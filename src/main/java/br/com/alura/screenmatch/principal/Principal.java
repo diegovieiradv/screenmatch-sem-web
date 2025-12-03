@@ -78,33 +78,33 @@ public class Principal {
             System.out.println("Nenhum episódio encontrado.");
         }
 
-        System.out.printf("A partir de qual data deseja ver os episódios lançados?");
-        var ano = leitura.nextInt();
-        leitura.nextLine();
-
-        LocalDate dataBusca = LocalDate.of(ano, 1, 1);
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        episodios.stream()
-                .filter(e -> e.getDataLancamento() != null && e.getDataLancamento().isAfter(dataBusca))
-                .forEach(e -> System.out.printf("Temporada %d - Episódio %d: %s (Lançado em: %s)%n",
-                        e.getTemporada(),
-                        e.getNumeroEpisodio(),
-                        e.getTitulo(),
-                        e.getDataLancamento().format(formatador)));
-
-        Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
-                .filter(e -> e.getAvaliacao() > 0.0)
-                .collect(Collectors.groupingBy(
-                        Episodio::getTemporada,
-                        Collectors.averagingDouble(Episodio::getAvaliacao)));
-        System.out.println(avaliacoesPorTemporada);
-
-        DoubleSummaryStatistics est = episodios.stream()
-                .filter(e -> e.getAvaliacao() > 0.0)
-                .collect(Collectors.summarizingDouble(Episodio::getAvaliacao));
-        System.out.println("Média: " + est.getAverage());
-        System.out.println("Melhor episódio: " + est.getMax());
-        System.out.println("Pior episódio: " + est.getMin());
-        System.out.println("Total de episódios avaliados: " + est.getCount());
+//        System.out.printf("A partir de qual data deseja ver os episódios lançados?");
+//        var ano = leitura.nextInt();
+//        leitura.nextLine();
+//
+//        LocalDate dataBusca = LocalDate.of(ano, 1, 1);
+//        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        episodios.stream()
+//                .filter(e -> e.getDataLancamento() != null && e.getDataLancamento().isAfter(dataBusca))
+//                .forEach(e -> System.out.printf("Temporada %d - Episódio %d: %s (Lançado em: %s)%n",
+//                        e.getTemporada(),
+//                        e.getNumeroEpisodio(),
+//                        e.getTitulo(),
+//                        e.getDataLancamento().format(formatador)));
+//
+//        Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
+//                .filter(e -> e.getAvaliacao() > 0.0)
+//                .collect(Collectors.groupingBy(
+//                        Episodio::getTemporada,
+//                        Collectors.averagingDouble(Episodio::getAvaliacao)));
+//        System.out.println(avaliacoesPorTemporada);
+//
+//        DoubleSummaryStatistics est = episodios.stream()
+//                .filter(e -> e.getAvaliacao() > 0.0)
+//                .collect(Collectors.summarizingDouble(Episodio::getAvaliacao));
+//        System.out.println("Média: " + est.getAverage());
+//        System.out.println("Melhor episódio: " + est.getMax());
+//        System.out.println("Pior episódio: " + est.getMin());
+//        System.out.println("Total de episódios avaliados: " + est.getCount());
     }
 }
